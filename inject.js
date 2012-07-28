@@ -74,7 +74,7 @@ function displayBar(link) {
             '<a id="subreddit" href="http://www.reddit.com/r/' + link.subreddit + '">/r/' + link.subreddit + '</a>' +
             '<a id="upvote" class="button">&#x25B2; Upvote</a>' +
             '<a id="downvote" class="button">&#x25BC; Downvote</a>' +
-            '<a id="comments" class="button" title="View comments" href="' + link.comments.Href + '">&#x275D; ' + link.comments + '</a>' +
+            '<a id="comments" class="button" title="View comments" href="' + link.commentsHref + '">&#x275D; ' + link.comments + '</a>' +
             '<a id="save" class="button" title="Save">&#x272D;</a>' +
             '<a id="close" class="close">&#x2715;</a>' +
         '</span>';
