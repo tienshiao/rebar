@@ -71,7 +71,7 @@ function displayBar(link) {
         '<span id="score">' + link.score + '</span>' +
         '<a id="title" href="' + link.commentsHref + '">' + link.title + '</a>' +
         '<span id="right">' + 
-            '<a id="subreddit" href="http://www.reddit.com' + link.subreddit + '">' + link.subreddit + '</a>' +
+            '<a id="subreddit" href="http://www.reddit.com/r/' + link.subreddit + '">/r/' + link.subreddit + '</a>' +
             '<a id="upvote" class="button">&#x25B2; Upvote</a>' +
             '<a id="downvote" class="button">&#x25BC; Downvote</a>' +
             '<a id="comments" class="button" title="View comments" href="' + link.comments.Href + '">&#x275D; ' + link.comments + '</a>' +
