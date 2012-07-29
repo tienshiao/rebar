@@ -18,6 +18,7 @@ function initBar() {
 }
 
 function displayBar(link) {
+    document.getElementById('logo').setAttribute('href', 'http://' + link.reddit + '/');
     document.getElementById('score').innerHTML = link.score;
     document.getElementById('title').setAttribute('href', link.commentsHref);
     document.getElementById('title').innerHTML = link.title;

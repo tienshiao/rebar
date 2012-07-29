@@ -20,6 +20,7 @@ function scrapeLink(l) {
         ups: entry.getAttribute('data-ups'),
         downs: entry.getAttribute('data-downs'),
         subreddit: entry.getElementsByClassName('subreddit')[0].innerHTML,
+        reddit: document.domain,
         score: entry.getElementsByClassName('score')[1].innerHTML,
         comments: comments,
         commentsHref: commentsEl.getAttribute('href')
@@ -81,7 +82,7 @@ function displayBar(link) {
 //if (window === window.top && document.getElementsByTagName('body').length) {
 if (window === window.top) {
     // don't load in iframes, etc
-    if (document.domain == 'www.reddit.com') {
+    if (document.domain.match(/.+\.reddit\.com$/)) {
         if (document.readyState == 'complete') {
             initClickTracker();
         } else {
