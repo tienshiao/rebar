@@ -28,6 +28,7 @@ function displayBar(link) {
     document.getElementById('title').innerHTML = link.title;
     document.getElementById('subreddit').setAttribute('href', 'http://www.reddit.com/r/' + link.subreddit);
     document.getElementById('subreddit').innerHTML = '/r/' + link.subreddit;
+    document.getElementById('comments').setAttribute('href', link.commentsHref);
     document.getElementById('comment-count').innerHTML = link.comments;
     
     var title = document.getElementById('title');
