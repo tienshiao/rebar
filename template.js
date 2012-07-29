@@ -40,6 +40,15 @@ function displayBar(link) {
     document.getElementById('close').addEventListener('click', function(e) {
         safari.self.tab.dispatchMessage('close', null);
     }, false);
+
+    window.addEventListener('focus', function(e) {
+        safari.self.tab.dispatchMessage('gainFocus', null);
+    }, false);
+
+    window.addEventListener('blur', function(e) {
+        safari.self.tab.dispatchMessage('loseFocus', null);
+    }, false);
+
 }
 
 initBar();
