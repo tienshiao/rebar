@@ -79,7 +79,6 @@ function displayBar(link) {
                        
 }
 
-//if (window === window.top && document.getElementsByTagName('body').length) {
 if (window === window.top) {
     // don't load in iframes, etc
     if (document.domain.match(/.+\.reddit\.com$/)) {
