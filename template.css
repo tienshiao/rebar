@@ -16,8 +16,8 @@ body {
     background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#aaa));
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #4b4b4b;
-    height: 28px;
     width: 100%;
+    min-height: 28px;
 }
 
 .inactive .bar {
@@ -56,6 +56,7 @@ a {
 #title {
     display: -webkit-box;
     margin-top: 4px;
+    margin-bottom: 4px;
     text-decoration: none;
     -webkit-box-flex: 1;
 }

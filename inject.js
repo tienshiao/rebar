@@ -60,6 +60,8 @@ function initBar() {
             var element = document.getElementsByTagName('rebar')[0];
             element.parentNode.removeChild(element);
             document.getElementsByTagName('html')[0].style.marginTop = 0;
+        } else if (e.name === 'setHeight') {
+            document.getElementsByTagName('rebar')[0].style.height = e.message;
         }
     }, false);
     safari.self.tab.dispatchMessage('getLink', null);
