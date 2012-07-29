@@ -5,13 +5,32 @@ body {
     font-size: 14px;
 
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#aaa));
 
     -webkit-user-select: none; 
     cursor: default;
 }
 
+.bar {
+    display: -webkit-box;
+    background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#aaa));
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #4b4b4b;
+    height: 28px;
+    width: 100%;
+}
+
+.inactive .bar {
+    background: -webkit-gradient(linear, left top, left bottom, from(#d7d7d7), to(#d7d7d7));
+    border-bottom: 1px solid #8c8c8c;
+}
+
 a {
     color: #2A2A2A;
+}
+
+.inactive a {
+    color: #808080;
 }
 
 #logo {
@@ -19,27 +38,31 @@ a {
     width: 20px;
     height: 17px;
     background-image: url(reddit.gif);
-    margin: 5px 10px 0 10px;
+    margin: 4px 10px 0 10px;
 }
 
 #score {
     display: -webkit-box;
     color: #666;
-    margin-top: 5px;
+    margin-top: 4px;
     margin-right: 10px;
     font-weight: bold;
 }
 
+.inactive #score {
+    color: #808080;
+}
+
 #title {
     display: -webkit-box;
-    margin-top: 5px;
+    margin-top: 4px;
     text-decoration: none;
     -webkit-box-flex: 1;
 }
 
 #subreddit {
     display: -webkit-box;
-    margin: 7px 5px 5px 0px;;
+    margin: 6px 5px 5px 0px;;
     font-size: 12px;
 }
 
@@ -49,7 +72,7 @@ a {
 }
 
 #right .button {
-    margin-top: 5px;
+    margin-top: 4px;
     margin-left: 3px;
     margin-right: 3px;
     display: inline-block;
@@ -69,6 +92,12 @@ a {
     text-decoration: none;
 }
 
+.inactive #right .button {
+    border-color: #A9A9A9;
+    color: #808080;
+    background: none;
+}
+
 #right .button:active {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#969696), color-stop(100%,#CECECE));
 }
@@ -76,10 +105,15 @@ a {
 #right .close {
     cursor: default;
     color: #4B4B4B;
-    margin-left: 7px;
+    margin-left: 6px;
     margin-right: 10px;
+}
+
+.inactive #right .close {
+    color: #808080;
 }
 
 #right .close:active {
     color: #2A2A2A;
 }
+

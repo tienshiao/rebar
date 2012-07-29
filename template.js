@@ -12,6 +12,10 @@ function initBar() {
                     });
                 }
             }
+        } else if (e.name === 'gainFocus') {
+            document.getElementsByTagName('body')[0].className = document.getElementsByTagName('body')[0].className.replace(/(?:^|\s)inactive(?!\S)/, '');
+        } else if (e.name === 'loseFocus') {
+            document.getElementsByTagName('body')[0].className += ' inactive';
         }
     }, false);
     safari.self.tab.dispatchMessage('getLink', null);
@@ -29,7 +33,6 @@ function displayBar(link) {
     document.getElementById('close').addEventListener('click', function(e) {
         safari.self.tab.dispatchMessage('close', null);
     }, false);
-
 }
 
 initBar();

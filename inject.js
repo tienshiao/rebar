@@ -75,8 +75,16 @@ function displayBar(link) {
   
     safari.self.tab.dispatchMessage('setLink', link);
 
-    rebar.innerHTML = '<iframe src="' + safari.extension.baseURI + 'template.html" style="display:-webkit-box; -webkit-box-flex:1; border:0"></iframe>';
-                       
+    rebar.innerHTML = '<iframe src="' + safari.extension.baseURI + 'template.html" style="display:-webkit-box; -webkit-box-flex:1; border:0; background-color:transparent;" allowtransparency="true"></iframe>';
+                      
+    window.addEventListener('focus', function(e) {
+        safari.self.tab.dispatchMessage('gainFocus', null);
+    }, false);
+
+    window.addEventListener('blur', function(e) {
+        safari.self.tab.dispatchMessage('loseFocus', null);
+    }, false);
+ 
 }
 
 if (window === window.top) {
