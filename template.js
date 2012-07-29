@@ -25,6 +25,10 @@ function displayBar(link) {
     document.getElementById('subreddit').innerHTML = '/r/' + link.subreddit;
     document.getElementById('comment-count').innerHTML = link.comments;
 
+    document.getElementById('close').addEventListener('click', function(e) {
+        safari.self.tab.dispatchMessage('close', null);
+    }, false);
+
 }
 
 initBar();
