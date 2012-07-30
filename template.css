@@ -49,6 +49,16 @@ a {
     font-weight: bold;
 }
 
+#score.upvoted, .inactive #score.upvoted {
+    color: #FF8B60;
+    text-shadow: none;
+}
+
+#score.downvoted, .inactive #score.downvoted {
+    color: #9494FF;
+    text-shadow: none;
+}
+
 .inactive #score {
     color: #808080;
 }
@@ -92,6 +102,23 @@ a {
     height: 16px;
     text-decoration: none;
 }
+
+#right .button.clicked {
+    color: #FFFFFF;
+    background: #696969;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#696969), color-stop(100%,#696969));
+    text-shadow: none;
+    border-color: #373737;
+}
+
+.inactive #right .button.clicked {
+    color: #FFFFFF;
+    background: #949494;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#949494), color-stop(100%,#949494));
+    text-shadow: none;
+    border-color: #4b4b4b;
+}
+
 
 .inactive #right .button {
     border-color: #A9A9A9;

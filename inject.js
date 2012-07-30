@@ -13,6 +13,16 @@ function scrapeLink(l) {
         comments = matches[1];
     }
 
+    var voteStatusEl = entry.getElementsByClassName('midcol')[0];
+    var voteStatus = false;
+    if (voteStatusEl.className.match(/dislikes/)) {
+        voteStatus = 'dislikes';
+    } else if (voteStatusEl.className.match(/unvoted/)) {
+        voteStatus = 'unvoted';
+    } else {
+        voteStatus = 'likes';
+    }
+
     return {
         title: l.innerHTML,
         href: l.getAttribute('href'),
@@ -23,7 +33,8 @@ function scrapeLink(l) {
         reddit: document.domain,
         score: entry.getElementsByClassName('score')[1].innerHTML,
         comments: comments,
-        commentsHref: commentsEl.getAttribute('href')
+        commentsHref: commentsEl.getAttribute('href'),
+        voteStatus: voteStatus
     };
 }
 
