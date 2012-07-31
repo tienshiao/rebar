@@ -14,13 +14,19 @@ function scrapeLink(l) {
     }
 
     var voteStatusEl = entry.getElementsByClassName('midcol')[0];
-    var voteStatus = false;
+    var voteStatus = null;
     if (voteStatusEl.className.match(/dislikes/)) {
         voteStatus = 'dislikes';
     } else if (voteStatusEl.className.match(/unvoted/)) {
         voteStatus = 'unvoted';
     } else {
         voteStatus = 'likes';
+    }
+
+    var saveStatusEl = entry.getElementsByClassName('state-button')[0];
+    var saveStatus = false;
+    if (saveStatusEl.innerHTML == 'saved' || saveStatusEl.innerHTML.match(/>unsave</)) {
+        saveStatus = true;
     }
 
     return {
@@ -34,7 +40,8 @@ function scrapeLink(l) {
         score: entry.getElementsByClassName('score')[1].innerHTML,
         comments: comments,
         commentsHref: commentsEl.getAttribute('href'),
-        voteStatus: voteStatus
+        voteStatus: voteStatus,
+        saveStatus: saveStatus
     };
 }
 

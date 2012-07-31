@@ -20,6 +20,8 @@ function handleMessage(m) {
         }
     } else if (m.name === 'vote') {
         vote(m, m.message.link, m.message.vote); 
+    } else if (m.name === 'save') {
+        save(m, m.message.link, m.message.save);
     } else {
         m.target.page.dispatchMessage(m.name, m.message);
     }
@@ -43,6 +45,34 @@ function vote(message, link, vote) {
             alert('There was a problem voting. Please double check your username/password or try again later.');
         }
     );
+}
+
+function save(message, link, save) {
+    if (save) {
+        redditPost('http://www.reddit.com/api/save', { id: link.name },
+            function(data) {
+                // success
+                message.target.page.dispatchMessage('saveCallback', true); 
+            },
+            function(data) {
+                // failure
+                message.target.page.dispatchMessage('saveCallback', undefined); 
+                alert('There was a problem saving. Please double check your username/password or try again later.');
+            }
+        );
+    } else {
+        redditPost('http://www.reddit.com/api/unsave', { id: link.name },
+            function(data) {
+                // success
+                message.target.page.dispatchMessage('saveCallback', false); 
+            },
+            function(data) {
+                // failure
+                message.target.page.dispatchMessage('saveCallback', undefined); 
+                alert('There was a problem unsaving. Please double check your username/password or try again later.');
+            }
+        );
+    }
 }
 
 function redditPost(url, data, success, failure) {

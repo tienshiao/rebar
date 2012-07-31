@@ -28,6 +28,11 @@ function initBar() {
                 }
                 updateVote();
             }
+        } else if (e.name === 'saveCallback') {
+            if (typeof(e.message) === 'boolean') {
+                link.saveStatus = e.message;
+                updateSave();
+            }
         }
     }, false);
     safari.self.tab.dispatchMessage('getLink', null);
@@ -60,6 +65,14 @@ function updateVote() {
     }
 }
 
+function updateSave() {
+    if (link.saveStatus) {
+        $('#save').addClass('clicked');
+    } else {
+        $('#save').removeClass('clicked');
+    }
+}
+
 function updateButtons(settingsOK) {
     if (settingsOK) {
         $('#upvote').removeClass('disabled').removeAttr('title');
@@ -75,13 +88,13 @@ function updateButtons(settingsOK) {
 function displayBar() {
     $('#logo').attr('href', 'http://' + link.reddit + '/');
     updateVote();
-
     $('#title').attr('href', link.commentsHref)
                .html(link.title);
     $('#subreddit').attr('href', 'http://' + link.reddit + '/r/' + link.subreddit)
                    .html('/r/' + link.subreddit);
     $('#comments').attr('href', link.commentsHref);
     $('#comment-count').html(link.comments);
+    updateSave();
     
     safari.self.tab.dispatchMessage('setHeight', $('.bar').first().outerHeight() + 'px');
     $(window).resize(function() {
@@ -121,6 +134,22 @@ function displayBar() {
             safari.self.tab.dispatchMessage('vote', { link: link, vote: -1 } ); 
         } 
     });
+
+    $('#save').click(function() {
+        if ($('#save').hasClass('disabled')) {
+            return;
+        }
+
+        if (link.saveStatus) {
+            // currently saved, unsave
+            safari.self.tab.dispatchMessage('save', { link: link, save: false } ); 
+        } else {
+            // not saved, save
+            safari.self.tab.dispatchMessage('save', { link: link, save: true } ); 
+        } 
+    });
+
+    
 
     $(window).focus(function() {
         safari.self.tab.dispatchMessage('gainFocus', null);
