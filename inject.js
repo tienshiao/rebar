@@ -110,6 +110,7 @@ if (window === window.top) {
                 initClickTracker();
             });
         }
+
     } else {
         initBar();
     }

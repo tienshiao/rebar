@@ -126,8 +126,23 @@ a {
     background: none;
 }
 
+#right .button.disabled {
+    color: #959595 !important;
+    cursor: not-allowed;
+}
+
+.inactive #right .button.disabled {
+    color: #c1c1c1 !important;
+    cursor: not-allowed;
+}
+
+
 #right .button:active {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#969696), color-stop(100%,#CECECE));
+}
+
+#right .button.disabled:active {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F2F2F2), color-stop(100%,#AAA));
 }
 
 #right .close {

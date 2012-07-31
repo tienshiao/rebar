@@ -1,21 +1,30 @@
+var link = null;
+
 function initBar() {
     safari.self.addEventListener('message', function(e) {
         if (e.name === 'returnLink') {
             if (e.message) {
+                link = e.message;
+
                 $(document).ready(function() {
-                    displayBar(e.message);
+                    displayBar();
                 });
             }
         } else if (e.name === 'gainFocus') {
             $('body').removeClass('inactive');
-        } else if (e.name === 'loseFocus') {
+            safari.self.tab.dispatchMessage('checkSettings');
+        } else if (e.name === 'loseFocus') { 
             $('body').addClass('inactive');
+        } else if (e.name === 'returnSettings') {
+            updateButtons(e.message);
         }
     }, false);
     safari.self.tab.dispatchMessage('getLink', null);
+
 }
 
-function updateVote(link) {
+
+function updateVote() {
     var score = $('#score');
     if (link.voteStatus === 'dislikes') {
         score.removeClass('upvoted').addClass('downvoted');
@@ -40,10 +49,21 @@ function updateVote(link) {
     }
 }
 
-function displayBar(link) {
-    $('#logo').attr('href', 'http://' + link.reddit + '/');
+function updateButtons(settingsOK) {
+    if (settingsOK) {
+        $('#upvote').removeClass('disabled').removeAttr('title');
+        $('#downvote').removeClass('disabled').removeAttr('title');
+        $('#save').removeClass('disabled').attr('title', 'Save');;
+    } else {
+        $('#upvote').addClass('disabled').attr('title', 'Log in (in extension settings) to upvote!');
+        $('#downvote').addClass('disabled').attr('title', 'Log in (in extension settings) to downvote!');
+        $('#save').addClass('disabled').attr('title', 'Log in (in extension settings) to save!');
+    }
+}
 
-    updateVote(link);
+function displayBar() {
+    $('#logo').attr('href', 'http://' + link.reddit + '/');
+    updateVote();
 
     $('#title').attr('href', link.commentsHref)
                .html(link.title);
@@ -57,32 +77,46 @@ function displayBar(link) {
         safari.self.tab.dispatchMessage('setHeight', $('.bar').first().outerHeight() + 'px');
     });
 
+    safari.self.tab.dispatchMessage('checkSettings');
+
+    $('#close').click(function() {
+        safari.self.tab.dispatchMessage('close', null);
+    });
+
     $('#upvote').click(function() {
+        if ($('#upvote').hasClass('disabled')) {
+            return;
+        }
+
         if (link.voteStatus === 'likes') {
             // remove old upvote
             link.voteStatus = 'unvoted';
             updateVote(link);
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
         } else {
             // upvote
             link.voteStatus = 'likes';
             updateVote(link);
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: +1 } ); 
         } 
     });
 
     $('#downvote').click(function() {
+        if ($('#downvote').hasClass('disabled')) {
+            return;
+        }
+
         if (link.voteStatus === 'dislikes') {
             // remove old upvote
             link.voteStatus = 'unvoted';
             updateVote(link);
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
         } else {
-            // upvote
+            // downvote
             link.voteStatus = 'dislikes';
             updateVote(link);
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: -1 } ); 
         } 
-    });
-
-    $('#close').click(function() {
-        safari.self.tab.dispatchMessage('close', null);
     });
 
     $(window).focus(function() {
