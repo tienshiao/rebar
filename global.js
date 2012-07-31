@@ -19,7 +19,7 @@ function handleMessage(m) {
             m.target.page.dispatchMessage('returnSettings', false); 
         }
     } else if (m.name === 'vote') {
-        vote(m.message.link, m.message.vote); 
+        vote(m, m.message.link, m.message.vote); 
     } else {
         m.target.page.dispatchMessage(m.name, m.message);
     }
@@ -31,20 +31,41 @@ function settingsChanged(e) {
     }
 }
 
-function vote(link, vote) {
-    redditPost('http://www.reddit.com/api/vote', { id: link.name, dir: vote });
+function vote(message, link, vote) {
+    redditPost('http://www.reddit.com/api/vote', { id: link.name, dir: vote },
+        function(data) {
+            // success
+            message.target.page.dispatchMessage('voteCallback', vote); 
+        },
+        function(data) {
+            // failure
+            message.target.page.dispatchMessage('voteCallback', undefined); 
+        }
+    );
 }
 
-function redditPost(url, data) {
+function redditPost(url, data, success, failure) {
     checkModHash(function() {
         data.uh = safari.extension.secureSettings.modhash;
-        $.post(url, data);
-    });
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(data) {
+                if ('jquery' in data) {
+                    failure();
+                } else {
+                    success();
+                }
+            },
+            error: failure
+        });
+    }, failure);
 }
 
-function checkModHash(func) {
+function checkModHash(success, failure) {
     if (safari.extension.secureSettings.modhash) {
-        func();
+        success();
     } else {
         var username = safari.extension.secureSettings.username;
         var password = safari.extension.secureSettings.password;
@@ -55,9 +76,10 @@ function checkModHash(func) {
         }, function(data) {
             if (data.json.errors.length == 0 ) {
                 safari.extension.secureSettings.modhash = data.json.data.modhash;
-                func();
+                success();
             } else {
                 safari.extension.secureSettings.modhash = null;
+                failure();
             }
         });
     }

@@ -17,6 +17,19 @@ function initBar() {
             $('body').addClass('inactive');
         } else if (e.name === 'returnSettings') {
             updateButtons(e.message);
+        } else if (e.name === 'voteCallback') {
+            if (typeof(e.message) === 'number') {
+                if (e.message == -1) {
+                    link.voteStatus = 'dislikes';
+                } else if (e.message == 1) {
+                    link.voteStatus = 'likes';
+                } else  {
+                    link.voteStatus = 'unvoted';
+                }
+                updateVote();
+            } else {
+                alert('There was an error with your request. Please double check your username/password or try again later.');
+            }
         }
     }, false);
     safari.self.tab.dispatchMessage('getLink', null);
@@ -90,13 +103,9 @@ function displayBar() {
 
         if (link.voteStatus === 'likes') {
             // remove old upvote
-            link.voteStatus = 'unvoted';
-            updateVote(link);
             safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
         } else {
             // upvote
-            link.voteStatus = 'likes';
-            updateVote(link);
             safari.self.tab.dispatchMessage('vote', { link: link, vote: +1 } ); 
         } 
     });
@@ -108,13 +117,9 @@ function displayBar() {
 
         if (link.voteStatus === 'dislikes') {
             // remove old upvote
-            link.voteStatus = 'unvoted';
-            updateVote(link);
             safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
         } else {
             // downvote
-            link.voteStatus = 'dislikes';
-            updateVote(link);
             safari.self.tab.dispatchMessage('vote', { link: link, vote: -1 } ); 
         } 
     });
