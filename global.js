@@ -40,6 +40,7 @@ function vote(message, link, vote) {
         function(data) {
             // failure
             message.target.page.dispatchMessage('voteCallback', undefined); 
+            alert('There was a problem voting. Please double check your username/password or try again later.');
         }
     );
 }

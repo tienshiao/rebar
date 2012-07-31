@@ -27,8 +27,6 @@ function initBar() {
                     link.voteStatus = 'unvoted';
                 }
                 updateVote();
-            } else {
-                alert('There was an error with your request. Please double check your username/password or try again later.');
             }
         }
     }, false);
