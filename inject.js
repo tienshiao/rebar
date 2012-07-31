@@ -13,6 +13,16 @@ function scrapeLink(l) {
         comments = matches[1];
     }
 
+    var subreddit = null;
+    if (entry.getElementsByClassName('subreddit').length) {
+        subreddit = entry.getElementsByClassName('subreddit')[0].innerHTML;
+    } else {
+        var match = window.location.pathname.match(/\/r\/(.+?)\//);
+        if (match.length == 2) {
+            subreddit = match[1];
+        }
+    }
+
     var voteStatusEl = entry.getElementsByClassName('midcol')[0];
     var voteStatus = null;
     if (voteStatusEl.className.match(/dislikes/)) {
@@ -35,7 +45,7 @@ function scrapeLink(l) {
         name: entry.getAttribute('data-fullname'),
         ups: entry.getAttribute('data-ups'),
         downs: entry.getAttribute('data-downs'),
-        subreddit: entry.getElementsByClassName('subreddit')[0].innerHTML,
+        subreddit: subreddit,
         reddit: document.domain,
         score: entry.getElementsByClassName('score')[1].innerHTML,
         comments: comments,
