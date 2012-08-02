@@ -18,6 +18,7 @@ function initBar() {
         } else if (e.name === 'returnSettings') {
             updateButtons(e.message);
         } else if (e.name === 'voteCallback') {
+            $('.active').removeClass('active');
             if (typeof(e.message) === 'number') {
                 if (e.message == -1) {
                     link.voteStatus = 'dislikes';
@@ -29,6 +30,7 @@ function initBar() {
                 updateVote();
             }
         } else if (e.name === 'saveCallback') {
+            $('.active').removeClass('active');
             if (typeof(e.message) === 'boolean') {
                 link.saveStatus = e.message;
                 updateSave();
@@ -112,6 +114,7 @@ function displayBar() {
             return;
         }
 
+        $('#upvote').addClass('active');
         if (link.voteStatus === 'likes') {
             // remove old upvote
             safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
@@ -126,6 +129,7 @@ function displayBar() {
             return;
         }
 
+        $('#downvote').addClass('active');
         if (link.voteStatus === 'dislikes') {
             // remove old upvote
             safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
@@ -140,6 +144,7 @@ function displayBar() {
             return;
         }
 
+        $('#save').addClass('active');
         if (link.saveStatus) {
             // currently saved, unsave
             safari.self.tab.dispatchMessage('save', { link: link, save: false } ); 

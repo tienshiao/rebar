@@ -137,7 +137,7 @@ a {
 }
 
 
-#right .button:active {
+#right .button:active, #right .button.active {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#969696), color-stop(100%,#CECECE));
 }
 
