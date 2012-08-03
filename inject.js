@@ -35,7 +35,7 @@ function scrapeLink(l) {
 
     var saveStatusEl = entry.getElementsByClassName('state-button')[0];
     var saveStatus = false;
-    if (saveStatusEl.innerHTML == 'saved' || saveStatusEl.innerHTML.match(/>unsave</)) {
+    if (saveStatusEl && (saveStatusEl.innerHTML == 'saved' || saveStatusEl.innerHTML.match(/>unsave</))) {
         saveStatus = true;
     }
 
