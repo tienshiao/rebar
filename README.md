@@ -1,6 +1,8 @@
 Rebar
 =====
 
+![Rebar screenshot](https://raw.github.com/tienshiao/rebar/master/screenshot.png)
+
 A Reddit toolbar for Safari in the vein of [Socialite](http://www.reddit.com/socialite/index.html) for Firefox and 
 [reddit companion](https://chrome.google.com/webstore/detail/algjnflpgoopkdijmkalfcifomdhmcbe) for Chrome.
 
