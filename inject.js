@@ -81,10 +81,6 @@ function initBar() {
 
                 if (document.readyState == 'complete') {
                     displayBar(link);
-                } else {
-                    window.addEventListener('load', function() {
-                        displayBar(link);
-                    });
                 }
             }
         } else if (e.name === 'close') {
