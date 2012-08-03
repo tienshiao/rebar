@@ -1,3 +1,5 @@
+var link = null;
+
 function scrapeLink(l) {
     var entry = l;
 
@@ -71,10 +73,11 @@ function initBar() {
     safari.self.addEventListener('message', function(e) {
         if (e.name === 'returnLink') {
             if (e.message) {
-                var link = e.message;
-                if (link.href != window.location) {
+                if (e.message.href != window.location) {
                     return;
                 }
+
+                link = e.message;
 
                 if (document.readyState == 'complete') {
                     displayBar(link);
@@ -90,6 +93,8 @@ function initBar() {
             document.getElementsByTagName('html')[0].style.marginTop = 0;
         } else if (e.name === 'setHeight') {
             document.getElementsByTagName('rebar')[0].style.height = e.message;
+        } else if (e.name === 'getCurrentLink') {
+            safari.self.tab.dispatchMessage('returnCurrentLink', link);
         }
     }, false);
     safari.self.tab.dispatchMessage('getLink', null);

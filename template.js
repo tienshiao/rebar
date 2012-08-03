@@ -2,7 +2,7 @@ var link = null;
 
 function initBar() {
     safari.self.addEventListener('message', function(e) {
-        if (e.name === 'returnLink') {
+        if (e.name === 'returnCurrentLink') {
             if (e.message) {
                 link = e.message;
 
@@ -37,7 +37,7 @@ function initBar() {
             }
         }
     }, false);
-    safari.self.tab.dispatchMessage('getLink', null);
+    safari.self.tab.dispatchMessage('getCurrentLink', null);
 
 }
 
