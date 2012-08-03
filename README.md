@@ -7,6 +7,8 @@ A Reddit toolbar for Safari in the vein of [Socialite](http://www.reddit.com/soc
 When you click on a link from Reddit, Rebar will display the link's score and title, and provide you with buttons
 to upvote, downvote, view comments, and save the link.
 
+Download: https://github.com/downloads/tienshiao/rebar/rebar-1.0.0.safariextz
+
 ### Configuration
 
 
