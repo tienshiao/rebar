@@ -53,5 +53,9 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>https://raw.github.com/tienshiao/rebar/master/update.plist</string>
+	<key>Website</key>
+	<string>https://github.com/tienshiao/rebar</string>
 </dict>
 </plist>
