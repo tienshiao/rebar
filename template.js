@@ -92,8 +92,8 @@ function displayBar() {
     updateVote();
     $('#title').attr('href', link.commentsHref)
                .html(link.title);
-    $('#subreddit').attr('href', 'http://' + link.reddit + '/r/' + link.subreddit)
-                   .html('/r/' + link.subreddit);
+    $('#subreddit').attr('href', 'http://' + link.reddit + link.subreddit)
+                   .html(link.subreddit);
     $('#comments').attr('href', link.commentsHref);
     $('#comment-count').html(link.comments);
     updateSave();
