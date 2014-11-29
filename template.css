@@ -167,3 +167,43 @@ a {
 #right .close:active {
     color: #2A2A2A;
 }
+
+/* Yosemite Style */
+.yosemite .bar {
+  border-top-color: #f0eff0;
+  border-bottom-color: #afaeaf;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f0eff0), to(#deddde));
+}
+
+.yosemite .inactive .bar {
+  border-color: #dbdbdb;
+  background: #f6f6f6;
+  border-top-color: #f6f6f6;
+}
+
+.yosemite #right .button {
+  background: #fcfcfc;
+  border-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 0px rgba(255,255,255,0.2) inset;
+}
+
+.yosemite #right .button:active, .yosemite #right .button.active {
+  background: #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 0px rgba(255,255,255,0.4) inset;
+}
+
+.yosemite #right .button.disabled, .yosemite #right .button.disabled:active, .yosemite .yosemite #right .button.disabled.active {
+  box-shadow: 0 1px 1px rgba(0,0,0,.025), 0 1px 0px rgba(255,255,255,0.2) inset;
+  background: #f6f6f6!important;
+  border-color: transparent;
+}
+
+.yosemite .inactive #right .button {
+  background: #f6f6f6!important;
+  border-color: rgba(169, 169, 169, 0.2);
+  color: #808080;
+  background: none;
+  box-shadow: none;
+}
