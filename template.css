@@ -200,10 +200,26 @@ a {
   border-color: transparent;
 }
 
+.yosemite #right .button.clicked {
+  color: #FFFFFF;
+  background: #1982fb;
+  text-shadow: none;
+  border-color: transparent;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 0px #51a4f6 inset;
+}
+
 .yosemite .inactive #right .button {
   background: #f6f6f6!important;
   border-color: rgba(169, 169, 169, 0.2);
   color: #808080;
   background: none;
   box-shadow: none;
+}
+
+.yosemite body {
+  font-family: "Helvetica Neue", helvetica, arial;
+}
+
+.yosemite #right .button {
+  font-weight: normal;
 }
