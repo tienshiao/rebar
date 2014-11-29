@@ -1,5 +1,13 @@
 var link = null;
 
+function safariVersion(){
+  var ua= navigator.userAgent, tem,
+  M= ua.match(/(safari(?=\/))\/?\s*(\d+)/i) || [];
+  M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+  if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+  return M[1];
+}
+
 function initBar() {
     safari.self.addEventListener('message', function(e) {
         if (e.name === 'returnCurrentLink') {
@@ -13,7 +21,7 @@ function initBar() {
         } else if (e.name === 'gainFocus') {
             $('body').removeClass('inactive');
             safari.self.tab.dispatchMessage('checkSettings');
-        } else if (e.name === 'loseFocus') { 
+        } else if (e.name === 'loseFocus') {
             $('body').addClass('inactive');
         } else if (e.name === 'returnSettings') {
             updateButtons(e.message);
@@ -97,7 +105,12 @@ function displayBar() {
     $('#comments').attr('href', link.commentsHref);
     $('#comment-count').html(link.comments);
     updateSave();
-    
+
+    var whatVersion = safariVersion();
+    if (whatVersion >= 8) {
+      $('body').addClass('yosemite');
+    }
+
     safari.self.tab.dispatchMessage('setHeight', $('.bar').first().outerHeight() + 'px');
     $(window).resize(function() {
         safari.self.tab.dispatchMessage('setHeight', $('.bar').first().outerHeight() + 'px');
@@ -117,11 +130,11 @@ function displayBar() {
         $('#upvote').addClass('active');
         if (link.voteStatus === 'likes') {
             // remove old upvote
-            safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } );
         } else {
             // upvote
-            safari.self.tab.dispatchMessage('vote', { link: link, vote: +1 } ); 
-        } 
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: +1 } );
+        }
     });
 
     $('#downvote').click(function() {
@@ -132,11 +145,11 @@ function displayBar() {
         $('#downvote').addClass('active');
         if (link.voteStatus === 'dislikes') {
             // remove old upvote
-            safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } ); 
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: 0 } );
         } else {
             // downvote
-            safari.self.tab.dispatchMessage('vote', { link: link, vote: -1 } ); 
-        } 
+            safari.self.tab.dispatchMessage('vote', { link: link, vote: -1 } );
+        }
     });
 
     $('#save').click(function() {
@@ -147,14 +160,14 @@ function displayBar() {
         $('#save').addClass('active');
         if (link.saveStatus) {
             // currently saved, unsave
-            safari.self.tab.dispatchMessage('save', { link: link, save: false } ); 
+            safari.self.tab.dispatchMessage('save', { link: link, save: false } );
         } else {
             // not saved, save
-            safari.self.tab.dispatchMessage('save', { link: link, save: true } ); 
-        } 
+            safari.self.tab.dispatchMessage('save', { link: link, save: true } );
+        }
     });
 
-    
+
 
     $(window).focus(function() {
         safari.self.tab.dispatchMessage('gainFocus', null);

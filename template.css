@@ -7,7 +7,7 @@ body {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#aaa));
 
-    -webkit-user-select: none; 
+    -webkit-user-select: none;
     cursor: default;
 }
 
@@ -34,11 +34,19 @@ a {
 }
 
 #logo {
-    display: -webkit-box;
-    width: 20px;
-    height: 17px;
-    background-image: url(reddit.png);
-    margin: 4px 10px 0 10px;
+  display: -webkit-box;
+  width: 20px;
+  height: 17px;
+  background-image: url(reddit.png);
+  background-repeat: no-repeat;
+  background-size: 20px 17px;
+  margin: 5px 10px 0 10px;
+}
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  #logo {
+    background-image: url(reddit@2x.png);
+  }
 }
 
 #score {
@@ -160,3 +168,58 @@ a {
     color: #2A2A2A;
 }
 
+/* Yosemite Style */
+.yosemite .bar {
+  border-top-color: #f0eff0;
+  border-bottom-color: #afaeaf;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f0eff0), to(#deddde));
+}
+
+.yosemite .inactive .bar {
+  border-color: #dbdbdb;
+  background: #f6f6f6;
+  border-top-color: #f6f6f6;
+}
+
+.yosemite #right .button {
+  background: #fcfcfc;
+  border-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 0px rgba(255,255,255,0.2) inset;
+}
+
+.yosemite #right .button:active, .yosemite #right .button.active {
+  background: #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 0px rgba(255,255,255,0.4) inset;
+}
+
+.yosemite #right .button.disabled, .yosemite #right .button.disabled:active, .yosemite .yosemite #right .button.disabled.active {
+  box-shadow: 0 1px 1px rgba(0,0,0,.025), 0 1px 0px rgba(255,255,255,0.2) inset;
+  background: #f6f6f6!important;
+  border-color: transparent;
+}
+
+.yosemite #right .button.clicked {
+  color: #FFFFFF;
+  background: #1982fb;
+  text-shadow: none;
+  border-color: transparent;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 1px 0px #51a4f6 inset;
+}
+
+.yosemite .inactive #right .button {
+  background: #f6f6f6!important;
+  border-color: rgba(169, 169, 169, 0.2);
+  color: #808080;
+  background: none;
+  box-shadow: none;
+}
+
+.yosemite body {
+  font-family: "Helvetica Neue", helvetica, arial;
+}
+
+.yosemite #right .button {
+  font-weight: normal;
+}
