@@ -7,7 +7,7 @@ body {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#aaa));
 
-    -webkit-user-select: none; 
+    -webkit-user-select: none;
     cursor: default;
 }
 
@@ -34,11 +34,19 @@ a {
 }
 
 #logo {
-    display: -webkit-box;
-    width: 20px;
-    height: 17px;
-    background-image: url(reddit.png);
-    margin: 4px 10px 0 10px;
+  display: -webkit-box;
+  width: 20px;
+  height: 17px;
+  background-image: url(reddit.png);
+  background-repeat: no-repeat;
+  background-size: 20px 17px;
+  margin: 5px 10px 0 10px;
+}
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  #logo {
+    background-image: url(reddit@2x.png);
+  }
 }
 
 #score {
@@ -159,4 +167,3 @@ a {
 #right .close:active {
     color: #2A2A2A;
 }
-
