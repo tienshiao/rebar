@@ -10,11 +10,11 @@
        <key>Developer Identifier</key>
        <string>58MN2R524R</string>
        <key>CFBundleVersion</key>
-       <string>1.0.0.1</string>
+       <string>1.1.0</string>
        <key>CFBundleShortVersionString</key>
-       <string>1.0.0</string>
+       <string>1.1.0</string>
        <key>URL</key>
-       <string></string>
+       <string>https://github.com/tienshiao/rebar/releases/download/v1.1.0/rebar-1.1.0.safariextz</string>
      </dict>
    </array>
 </dict>
