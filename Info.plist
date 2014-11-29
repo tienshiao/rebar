@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Tienshiao Ma</string>
 	<key>Builder Version</key>
-	<string>7536.25</string>
+	<string>10600.2.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>Rebar</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -41,6 +41,8 @@
 	</dict>
 	<key>Description</key>
 	<string>A Reddit Toolbar</string>
+	<key>DeveloperIdentifier</key>
+	<string>58MN2R524R</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
